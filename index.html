@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#B5121B">
+<title>Experience Saras · Aditya Birla Capital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== Swap in the official ABC logo here (PNG/SVG URL or data URI). Leave empty to show the text wordmark. ===== */
+:root{
+  --red:#B5121B; --red-2:#D9262E; --red-soft:#FDECEC;
+  --gold:#F2A900; --gold-soft:#FFF6DD;
+  --teal:#13A8B8; --teal-soft:#E3F7F9;
+  --ink:#1B1B22; --ink-2:#4A4A57; --ink-3:#8A8A96;
+  --line:#ECE9E6; --bg:#F7F5F2; --card:#FFFFFF;
+  --ok:#1E9E5A; --ok-soft:#E5F6EC;
+  --warn:#C97A00; --warn-soft:#FFF3DC;
+  --r:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:#E9E6E2;display:flex;align-items:center;justify-content:center}
+button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
+#phone{position:relative;width:390px;height:844px;background:var(--bg);border-radius:44px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.25),0 0 0 10px #111,0 0 0 11px #333}
+@media (max-width:520px){body{background:var(--bg);display:block}#phone{width:100%;height:100dvh;border-radius:0;box-shadow:none}}
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;pointer-events:none;transform:translateX(24px);transition:opacity .35s ease,transform .35s ease}
+.screen.active{opacity:1;pointer-events:auto;transform:none}
+.scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:28px}
+.scroll::-webkit-scrollbar{display:none}
+
+/* Brand */
+.brand{display:flex;align-items:center;gap:10px}
+.brand img{height:34px}
+.wordmark{display:flex;flex-direction:column;line-height:1.05}
+.wordmark b{font-size:15px;font-weight:800;color:var(--red);letter-spacing:.2px}
+.wordmark span{font-size:10.5px;color:var(--ink-3);font-weight:600;letter-spacing:1.4px;text-transform:uppercase}
+.sun{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--red),var(--red-2));display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px;letter-spacing:.5px}
+.saras-chip{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--ink-2);background:#fff;border:1px solid var(--line);padding:5px 10px;border-radius:99px}
+.saras-chip i{font-style:normal;font-weight:800;color:var(--teal)}
+
+/* Splash */
+#splash{background:radial-gradient(120% 70% at 0% 0%,#E3F7F9 0%,transparent 55%),radial-gradient(100% 60% at 100% 100%,#FDECEC 0%,transparent 60%),var(--bg)}
+#splash .top{padding:56px 24px 0;display:flex;justify-content:space-between;align-items:center}
+#splash .hero{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 26px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:1.6px;color:var(--red);text-transform:uppercase;margin-bottom:14px}
+#splash h1{font-size:34px;line-height:1.12;font-weight:800;letter-spacing:-.8px}
+#splash h1 em{font-style:normal;color:var(--red)}
+#splash p.lead{margin-top:14px;font-size:15.5px;line-height:1.5;color:var(--ink-2)}
+.scan-viz{margin:28px 0 6px;background:#fff;border-radius:20px;padding:16px;box-shadow:0 10px 30px rgba(30,20,10,.07);position:relative;overflow:hidden}
+.scan-viz .doc-line{height:8px;border-radius:4px;background:#EFECE8;margin:8px 0}
+.scan-viz .doc-line.hl{background:var(--red-soft);position:relative}
+.scan-viz .doc-line.hl::after{content:"";position:absolute;right:-4px;top:-5px;width:18px;height:18px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(181,18,27,.15)}
+.scan-bar{position:absolute;left:0;right:0;height:46px;background:linear-gradient(180deg,transparent,rgba(19,168,184,.22),transparent);animation:scan 2.6s ease-in-out infinite}
+@keyframes scan{0%{top:-40px}100%{top:100%}}
+.scan-viz .tag{display:inline-flex;gap:6px;align-items:center;font-size:11.5px;font-weight:600;color:var(--red);background:var(--red-soft);padding:5px 9px;border-radius:8px;margin-top:6px}
+.bottom{padding:18px 22px calc(26px + env(safe-area-inset-bottom))}
+.btn{width:100%;height:54px;border-radius:14px;background:var(--red);color:#fff;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 8px 20px rgba(181,18,27,.28);transition:transform .1s}
+.btn:active{transform:scale(.98)}
+.btn.ghost{background:#fff;color:var(--ink);box-shadow:none;border:1px solid var(--line)}
+.fine{margin-top:12px;text-align:center;font-size:11.5px;color:var(--ink-3)}
+
+/* App bar */
+.appbar{padding:52px 18px 12px;display:flex;align-items:center;gap:12px;background:var(--bg);position:relative;z-index:2}
+.appbar .back{width:38px;height:38px;border-radius:12px;background:#fff;border:1px solid var(--line);display:grid;place-items:center}
+.appbar .ttl{flex:1;min-width:0}
+.appbar .ttl b{display:block;font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.appbar .ttl span{font-size:12px;color:var(--ink-3)}
+
+/* Home */
+#home .greet{padding:4px 22px 0}
+#home .greet h2{font-size:26px;font-weight:800;letter-spacing:-.5px;line-height:1.2}
+#home .greet h2 .g{color:#2E3E8C}
+.search{margin:18px 18px 0;background:#fff;border:1.5px solid var(--teal);border-radius:16px;display:flex;align-items:center;gap:10px;padding:6px 6px 6px 14px;box-shadow:0 6px 18px rgba(19,168,184,.12)}
+.search input{flex:1;border:0;outline:0;font:inherit;font-size:15px;min-width:0;background:transparent}
+.search button{background:var(--red);color:#fff;font-weight:600;font-size:14px;padding:11px 16px;border-radius:11px}
+.pills{display:flex;justify-content:center;gap:14px;margin:12px 0 0;font-size:11.5px;color:var(--ink-2)}
+.pills span{display:flex;gap:5px;align-items:center}
+.sec-h{padding:26px 22px 10px;font-size:12px;font-weight:700;letter-spacing:1.2px;color:var(--ink-3);text-transform:uppercase}
+.case-card{margin:0 18px 12px;background:#fff;border-radius:20px;padding:16px;border:1px solid var(--line);display:block;width:calc(100% - 36px);text-align:left;position:relative;overflow:hidden;transition:transform .12s}
+.case-card:active{transform:scale(.985)}
+.case-card .kicker{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.case-card h3{font-size:18px;font-weight:700;margin:6px 0 4px;letter-spacing:-.2px}
+.case-card p{font-size:13.5px;color:var(--ink-2);line-height:1.45}
+.case-card .meta{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.chip{font-size:11.5px;font-weight:600;padding:5px 9px;border-radius:8px;background:var(--bg);color:var(--ink-2)}
+.case-card .go{position:absolute;right:16px;top:16px;width:34px;height:34px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center}
+.case-card.a .kicker{color:var(--warn)} .case-card.b .kicker{color:var(--teal)}
+.recent{margin:0 18px;background:#fff;border-radius:18px;border:1px solid var(--line);overflow:hidden}
+.rc{display:flex;align-items:center;gap:12px;width:100%;padding:14px 16px;text-align:left;border-top:1px solid var(--line)}
+.rc:first-child{border-top:0}
+.rc:active{background:var(--bg)}
+.rc .di{width:38px;height:38px;border-radius:11px;background:var(--red-soft);display:grid;place-items:center;flex:none}
+.rc .rn{flex:1}
+.rc .rn b{display:block;font-size:15px;font-weight:700}
+.rc .rn small{font-size:12px;color:var(--ink-3)}
+.rc .arr{font-size:22px;color:var(--ink-3)}
+.howto{margin:8px 18px 0;padding:14px 16px;border-radius:16px;background:var(--gold-soft);font-size:13px;line-height:1.5;color:#6B4E00}
+
+/* Processing */
+#processing .body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 26px}
+.ring{width:120px;height:120px;margin:0 auto 26px;position:relative}
+.ring svg{transform:rotate(-90deg)}
+.ring .num{position:absolute;inset:0;display:grid;place-items:center;font-size:26px;font-weight:800}
+.ring .num small{display:block;font-size:11px;color:var(--ink-3);font-weight:600;text-align:center;margin-top:-4px}
+#processing h2{text-align:center;font-size:21px;font-weight:800;letter-spacing:-.3px}
+#processing .sub{text-align:center;color:var(--ink-3);font-size:13.5px;margin:6px 0 24px}
+.steps{background:#fff;border-radius:18px;padding:6px 16px;border:1px solid var(--line)}
+.step{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink-3);transition:color .3s}
+.step:last-child{border:0}
+.step .dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;flex:none;transition:all .3s}
+.step.run{color:var(--ink)} .step.run .dot{border-color:var(--teal);border-top-color:transparent;animation:spin .8s linear infinite}
+.step.done{color:var(--ink)} .step.done .dot{background:var(--ok);border-color:var(--ok)}
+.step.done .dot::after{content:"";width:6px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Case */
+.case-head{margin:0 18px;background:#fff;border-radius:18px;padding:14px 16px;border:1px solid var(--line)}
+.case-head .row1{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px}
+.case-head .row1 .ic{width:28px;height:28px;border-radius:8px;background:var(--red-soft);color:var(--red);display:grid;place-items:center}
+.case-head .row2{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+.tabs{display:flex;margin:14px 18px 0;background:#EDEAE6;border-radius:13px;padding:4px}
+.tabs button{flex:1;height:38px;border-radius:10px;font-size:14px;font-weight:600;color:var(--ink-2)}
+.tabs button.on{background:#fff;color:var(--ink);box-shadow:0 2px 6px rgba(0,0,0,.06)}
+.pane{display:none;padding:14px 18px 0}
+.pane.on{display:block}
+.alert{border-radius:18px;padding:16px;background:linear-gradient(135deg,#B5121B,#D9262E);color:#fff;position:relative;overflow:hidden}
+.alert .k{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;opacity:.85}
+.alert h3{font-size:19px;font-weight:800;margin:6px 0 6px;letter-spacing:-.2px}
+.alert p{font-size:13.5px;line-height:1.45;opacity:.95}
+.alert .cnt{display:flex;gap:8px;margin-top:12px}
+.alert .cnt span{background:rgba(255,255,255,.18);padding:6px 10px;border-radius:9px;font-size:12px;font-weight:600}
+.card{background:#fff;border-radius:18px;border:1px solid var(--line);margin-top:12px;overflow:hidden}
+.card > h4{font-size:14.5px;font-weight:700;padding:14px 16px 4px;display:flex;align-items:center;justify-content:space-between}
+.card > h4 small{font-size:11.5px;color:var(--ink-3);font-weight:500}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px;padding:10px 16px 16px}
+.kv div span{display:block;font-size:11.5px;color:var(--ink-3);margin-bottom:2px}
+.kv div b{font-size:13.5px;font-weight:600}
+.xc{width:100%;border-collapse:collapse;font-size:12.5px}
+.xc th{text-align:left;font-weight:600;color:var(--ink-3);font-size:11px;text-transform:uppercase;letter-spacing:.6px;padding:8px 10px;background:#FAF9F7}
+.xc td{padding:10px;border-top:1px solid var(--line);vertical-align:top}
+.xc td:first-child{font-weight:600;padding-left:16px}
+.xc th:first-child{padding-left:16px}
+.xc .m{width:28px;text-align:center;padding-right:14px}
+.ok-i{color:var(--ok);font-weight:800}.bad-i{color:var(--red);font-weight:800}
+.xc tr.bad td{background:#FFF7F7}
+.flag{display:flex;gap:12px;padding:13px 16px;border-top:1px solid var(--line);align-items:flex-start}
+.flag:first-of-type{border-top:0}
+.sev{flex:none;font-size:10.5px;font-weight:700;padding:3px 7px;border-radius:6px;margin-top:1px;text-transform:uppercase;letter-spacing:.4px}
+.sev.high{background:var(--red-soft);color:var(--red)} .sev.med{background:var(--warn-soft);color:var(--warn)}
+.flag .t{flex:1;font-size:13.5px;line-height:1.45}
+.flag .t b{display:block;font-size:13.5px;margin-bottom:2px}
+.flag .t span{color:var(--ink-2)}
+.src{flex:none;font-size:12px;font-weight:600;color:var(--warn);border:1px solid #F3C77A;border-radius:9px;padding:6px 9px;display:flex;align-items:center;gap:4px}
+.reco{padding:6px 16px 16px;font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+.reco li{margin:6px 0 0 18px}
+.actions{display:flex;gap:10px;margin-top:14px}
+.actions .btn{height:50px;font-size:14.5px}
+.doc{display:flex;align-items:center;gap:12px;padding:13px 16px;border-top:1px solid var(--line);width:100%;text-align:left}
+.doc:first-of-type{border-top:0}
+.doc .di{width:36px;height:36px;border-radius:10px;background:var(--bg);display:grid;place-items:center;flex:none;color:var(--ink-2)}
+.doc .dn{flex:1;font-size:14px;font-weight:600;line-height:1.3}
+.doc .dn small{display:block;font-weight:500;font-size:11.5px;color:var(--ink-3);margin-top:2px}
+.st{font-size:11px;font-weight:700;padding:4px 8px;border-radius:7px;white-space:nowrap}
+.st.ok{background:var(--ok-soft);color:var(--ok)} .st.attn{background:var(--warn-soft);color:var(--warn)}
+.legend{font-size:12px;color:var(--ink-3);margin:2px 2px 10px;line-height:1.5}
+
+/* Sheet */
+#scrim{position:absolute;inset:0;background:rgba(15,10,10,.45);opacity:0;pointer-events:none;transition:opacity .3s;z-index:20}
+#scrim.on{opacity:1;pointer-events:auto}
+#sheet{position:absolute;left:0;right:0;bottom:0;height:88%;background:var(--bg);border-radius:24px 24px 0 0;z-index:21;transform:translateY(102%);transition:transform .38s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
+#sheet.on{transform:none}
+#sheet .grab{width:40px;height:5px;border-radius:3px;background:#D5D1CC;margin:10px auto 4px}
+#sheet .sh-head{display:flex;align-items:center;padding:6px 18px 10px;gap:10px}
+#sheet .sh-head b{flex:1;font-size:16px}
+#sheet .close{width:34px;height:34px;border-radius:50%;background:#fff;border:1px solid var(--line);display:grid;place-items:center}
+#sheet .sh-body{flex:1;overflow-y:auto;padding:0 16px 20px}
+.callout{position:sticky;bottom:0;margin:0 -16px;padding:14px 18px calc(16px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);box-shadow:0 -10px 24px rgba(0,0,0,.06)}
+.callout .k{font-size:11px;font-weight:700;color:var(--teal);letter-spacing:1px;text-transform:uppercase;display:flex;gap:6px;align-items:center}
+.callout p{font-size:13.5px;line-height:1.5;margin-top:4px}
+.callout p b{color:var(--red)}
+
+/* Mock documents */
+.paper{background:#fff;border-radius:6px;box-shadow:0 2px 14px rgba(0,0,0,.08);padding:18px 16px;position:relative;overflow:hidden;font-size:12px;color:#222;margin-bottom:14px}
+.paper::before{content:"SAMPLE · DEMO ONLY";position:absolute;top:44%;left:-10%;right:-10%;text-align:center;transform:rotate(-24deg);font-size:30px;font-weight:800;color:rgba(181,18,27,.06);letter-spacing:4px;pointer-events:none}
+.paper h5{font-size:12.5px;text-align:center;font-weight:800;letter-spacing:.4px;line-height:1.35}
+.paper .subh{text-align:center;font-size:10.5px;color:#666;margin:3px 0 12px}
+.paper table{width:100%;border-collapse:collapse;font-size:11.5px}
+.paper td{border:1px solid #DDD;padding:6px 7px;vertical-align:top}
+.paper td:first-child{color:#555;width:52%}
+.paper .serif{font-family:"Times New Roman",Georgia,serif;font-size:12.5px;letter-spacing:.6px}
+.paper .hand{font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;color:#1a3a8a;font-size:12.5px}
+.hl{background:rgba(242,169,0,.25);outline:2px solid var(--gold);border-radius:3px;padding:0 2px;transition:box-shadow .3s}
+.hl.pulse{animation:pulse 1.2s ease 2}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(181,18,27,0)}50%{box-shadow:0 0 0 6px rgba(181,18,27,.25)}}
+.hl.red{background:rgba(181,18,27,.12);outline-color:var(--red)}
+.yn{font-weight:700}
+.placeholder{text-align:center;padding:30px 10px;color:var(--ink-3);font-size:13px}
+.placeholder .big{font-size:40px;margin-bottom:6px}
+
+/* Recap */
+#recap{background:radial-gradient(100% 60% at 100% 0%,#FDECEC,transparent 60%),radial-gradient(100% 60% at 0% 100%,#E3F7F9,transparent 60%),var(--bg)}
+#recap .body{flex:1;padding:6px 22px 0;overflow-y:auto}
+#recap h2{font-size:28px;font-weight:800;letter-spacing:-.6px;line-height:1.15}
+#recap .lead{color:var(--ink-2);font-size:14.5px;margin:10px 0 18px;line-height:1.5}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:#fff;border-radius:16px;padding:14px;border:1px solid var(--line)}
+.stat b{font-size:26px;font-weight:800;display:block;letter-spacing:-.5px}
+.stat span{font-size:12px;color:var(--ink-3)}
+.flow{margin-top:16px;background:#fff;border-radius:16px;border:1px solid var(--line);padding:4px 16px}
+.flow div{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13.5px;line-height:1.4}
+.flow div:last-child{border:0}
+.flow i{font-style:normal;flex:none;width:24px;height:24px;border-radius:8px;background:var(--teal-soft);color:var(--teal);display:grid;place-items:center;font-weight:800;font-size:12px}
+.toast{position:absolute;left:18px;right:18px;bottom:30px;background:var(--ink);color:#fff;padding:13px 16px;border-radius:14px;font-size:13.5px;z-index:40;opacity:0;transform:translateY(10px);transition:all .3s;pointer-events:none}
+.toast.on{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<div id="phone">
+
+  <!-- SPLASH -->
+  <section class="screen active" id="splash">
+    <div class="top">
+      <div class="brand" data-brand></div>
+      <span class="saras-chip">Powered by <i>Saras</i></span>
+    </div>
+    <div class="hero">
+      <div class="eyebrow">ABC Analytics Day</div>
+      <h1>See how AI reads an underwriting file and <em>catches what people miss.</em></h1>
+      <p class="lead">Pick a case, watch Saras go through the documents, and see the red flags it raises for the underwriter.</p>
+      <div class="scan-viz" aria-hidden="true">
+        <div class="scan-bar"></div>
+        <div class="doc-line" style="width:60%"></div>
+        <div class="doc-line" style="width:90%"></div>
+        <div class="doc-line hl" style="width:78%"></div>
+        <div class="doc-line" style="width:84%"></div>
+        <div class="doc-line" style="width:50%"></div>
+        <div class="tag">⚑ Mismatch found: Application vs Medical report</div>
+      </div>
+    </div>
+    <div class="bottom">
+      <button class="btn" onclick="go('home')">Start the demo <span>→</span></button>
+      <div class="fine">Demo with simulated data. No customer information is used.</div>
+    </div>
+  </section>
+
+  <!-- HOME -->
+  <section class="screen" id="home">
+    <div class="appbar">
+      <div class="brand" data-brand style="flex:1"></div>
+      <span class="saras-chip"><i>S</i> Saras</span>
+    </div>
+    <div class="scroll">
+      <div class="greet"><h2><span class="g" id="greetWord">Good morning</span>, let's get started</h2></div>
+      <form class="search" onsubmit="event.preventDefault();searchCase()">
+        <span>🔍</span>
+        <input id="q" placeholder="Enter policy no. (try DEMO-01)" autocomplete="off">
+        <button type="submit">Search</button>
+      </form>
+      <div class="pills"><span>⚡ Instant retrieval</span><span>🛡 AI analysis</span><span>📊 Smart underwriting</span></div>
+
+      <div class="sec-h">Recent cases</div>
+      <div class="recent">
+        <button class="rc" onclick="openCase('itr')"><div class="di">📄</div><div class="rn"><b>DEMO-01</b><small>Term plan · 10 min ago</small></div><span class="arr">›</span></button>
+        <button class="rc" onclick="openCase('fmr')"><div class="di">📄</div><div class="rn"><b>DEMO-02</b><small>Term plan · 25 min ago</small></div><span class="arr">›</span></button>
+      </div>
+      <div class="fine" style="margin-top:14px">Sample cases with made-up data</div>
+    </div>
+  </section>
+
+  <!-- PROCESSING -->
+  <section class="screen" id="processing">
+    <div class="appbar"><div class="brand" data-brand style="flex:1"></div></div>
+    <div class="body">
+      <div class="ring">
+        <svg width="120" height="120"><circle cx="60" cy="60" r="52" stroke="#ECE9E6" stroke-width="10" fill="none"/><circle id="ringArc" cx="60" cy="60" r="52" stroke="#13A8B8" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7" style="transition:stroke-dashoffset .5s"/></svg>
+        <div class="num"><div><span id="docCount">0</span><small>docs read</small></div></div>
+      </div>
+      <h2>Saras is reading the file</h2>
+      <div class="sub" id="procSub">DEMO-01 · 7 documents</div>
+      <div class="steps" id="steps"></div>
+    </div>
+  </section>
+
+  <!-- CASE -->
+  <section class="screen" id="case">
+    <div class="appbar">
+      <button class="back" onclick="go('home')" aria-label="Back">←</button>
+      <div class="ttl"><b id="cTitle">Policy DEMO-01</b><span id="cSub">Term plan · Sample case</span></div>
+      <span class="saras-chip"><i>S</i></span>
+    </div>
+    <div class="scroll" id="caseScroll">
+      <div class="case-head" id="caseHead"></div>
+      <div class="tabs"><button class="on" data-tab="summary" onclick="tab('summary')">Summary</button><button data-tab="docs" onclick="tab('docs')">Documents</button></div>
+      <div class="pane on" id="pane-summary"></div>
+      <div class="pane" id="pane-docs"></div>
+    </div>
+  </section>
+
+  <!-- RECAP -->
+  <section class="screen" id="recap">
+    <div class="appbar"><div class="brand" data-brand style="flex:1"></div><span class="saras-chip">Powered by <i>Saras</i></span></div>
+    <div class="body" id="recapBody"></div>
+    <div class="bottom" style="display:flex;flex-direction:column;gap:10px">
+      <button class="btn" id="otherBtn">Try the other case →</button>
+      <button class="btn ghost" onclick="go('splash')">Back to start</button>
+    </div>
+  </section>
+
+  <div id="scrim" onclick="closeSheet()"></div>
+  <div id="sheet">
+    <div class="grab"></div>
+    <div class="sh-head"><b id="shTitle">Document</b><button class="close" onclick="closeSheet()">✕</button></div>
+    <div class="sh-body" id="shBody"></div>
+  </div>
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+const LOGO_URL = ""; // e.g. "abc-logo.svg" — official Aditya Birla Capital logo
+
+/* ---------- Mock documents ---------- */
+const DOCS = {
+  itr_app: () => `
+    <div class="paper"><h5>PROPOSAL FORM · TERM INSURANCE</h5><div class="subh">Section C: Occupation & Income (sample)</div>
+    <table>
+      <tr><td>Name of Life Assured</td><td>Rohan Mehra (sample)</td></tr>
+      <tr><td>Occupation</td><td>Self-employed: Garment trading</td></tr>
+      <tr><td>Annual income (declared)</td><td><span class="hl" data-hl="appinc">₹48,00,000</span></td></tr>
+      <tr><td>Income proof submitted</td><td>ITR AY 2025-26</td></tr>
+      <tr><td>Sum assured applied</td><td>₹3,00,00,000</td></tr>
+      <tr><td>Date of proposal</td><td><span class="hl" data-hl="propdate">14-Oct-2026</span></td></tr>
+    </table></div>`,
+  itr: () => `
+    <div class="paper"><h5>INDIAN INCOME TAX RETURN<br>ACKNOWLEDGEMENT</h5><div class="subh">Assessment Year 2025-26 · Form ITR-3 · <b>Sample for demo</b></div>
+    <table>
+      <tr><td>Name</td><td>ROHAN MEHRA</td></tr>
+      <tr><td>PAN</td><td>ABCPM0000X</td></tr>
+      <tr><td>Acknowledgement No.</td><td><span class="hl red" data-hl="ack">5821904417 263</span></td></tr>
+      <tr><td>Date of filing</td><td><span class="hl" data-hl="filed">12-Oct-2026</span></td></tr>
+      <tr><td>Gross Total Income</td><td><span class="hl red serif" data-hl="gti">48,20,000</span></td></tr>
+      <tr><td>Deductions</td><td>0</td></tr>
+      <tr><td>Total Income</td><td>48,20,000</td></tr>
+      <tr><td>Net tax payable</td><td><span class="hl red" data-hl="tax">1,18,144</span></td></tr>
+      <tr><td>Taxes paid</td><td>1,18,144</td></tr>
+      <tr><td>Tax payable / Refund</td><td>0</td></tr>
+    </table>
+    <p style="font-size:10.5px;color:#777;margin-top:10px">Return verified electronically.</p></div>`,
+  fmr_app: () => `
+    <div class="paper"><h5>PROPOSAL FORM · TERM INSURANCE</h5><div class="subh">Section F: Health Declaration (sample)</div>
+    <table>
+      <tr><td>Name of Life Assured</td><td>Vikram Nair (sample)</td></tr>
+      <tr><td>Have you ever had high blood pressure, diabetes or high blood sugar?</td><td><span class="hl red yn" data-hl="q1">No</span></td></tr>
+      <tr><td>Are you currently taking any medicine?</td><td><span class="hl red yn" data-hl="q2">No</span></td></tr>
+      <tr><td>Hospitalised or treated in last 5 years?</td><td><span class="yn">No</span></td></tr>
+      <tr><td>Tobacco / alcohol</td><td><span class="yn">No</span></td></tr>
+      <tr><td>Height / Weight</td><td>176 cm / 84 kg</td></tr>
+    </table></div>`,
+  fmr: () => `
+    <div class="paper"><h5>FULL MEDICAL REPORT (FMR)</h5><div class="subh">Medical examiner's report · Sample for demo</div>
+    <table>
+      <tr><td>Blood pressure (1st / 2nd reading)</td><td><span class="hl red" data-hl="bp">158/98 · 152/96</span></td></tr>
+      <tr><td>Pulse</td><td>84 /min</td></tr>
+      <tr><td>Height / Weight / BMI</td><td>176 cm / 85 kg / 27.4</td></tr>
+      <tr><td>Past medical history (as told to examiner)</td><td><span class="hl red hand" data-hl="hist">K/C/O Type 2 DM × 4 yrs. On Tab Metformin 500 mg BD.</span></td></tr>
+      <tr><td>Examiner's remarks</td><td class="hand">Pt. fasting, cooperative.</td></tr>
+    </table></div>`,
+  blood: () => `
+    <div class="paper"><h5>BIOCHEMISTRY REPORT</h5><div class="subh">Sample for demo</div>
+    <table>
+      <tr><td>Fasting blood sugar</td><td><span class="hl red" data-hl="fbs">164 mg/dL</span> <small>(70–100)</small></td></tr>
+      <tr><td>HbA1c</td><td><span class="hl red" data-hl="hba1c">8.1 %</span> <small>(&lt; 5.7)</small></td></tr>
+      <tr><td>Total cholesterol</td><td>212 mg/dL</td></tr>
+      <tr><td>Serum creatinine</td><td>0.9 mg/dL</td></tr>
+    </table></div>`,
+  generic: (name) => `<div class="placeholder"><div class="big">✅</div><b>${name}</b><br>Validated by Saras. No issues found.<br><br><small>Identity details are masked in this demo.</small></div>`
+};
+
+/* ---------- Cases ---------- */
+const CASES = {
+  itr: {
+    id:"DEMO-01", plan:"Term plan · 30 yrs", la:"Rohan Mehra (sample) · 38 · M", occ:"Self-employed: Garment trading",
+    docs:[
+      {n:"Application Form", s:"ok", d:"itr_app"},
+      {n:"ITR · AY 2025-26", s:"attn", d:"itr", note:"4 checks failed"},
+      {n:"PAN Card", s:"ok"}, {n:"Aadhaar Card", s:"ok"}, {n:"Bank statement · 6 months", s:"ok"}, {n:"Benefit illustration", s:"ok"}
+    ],
+    alert:{k:"Saras alert · Financial", h:"Possible tampered ITR", p:"The income on the ITR matches the form, but the tax and filing details tell a different story.", c:["2 high", "2 medium"]},
+    general:[["Sum assured","₹3,00,00,000"],["Annual premium","₹38,640"],["Declared income","₹48,00,000"],["Cover / income","6.3×"],["Channel","Bancassurance"],["Income proof","ITR AY 2025-26"]],
+    xc:[["Name","Rohan Mehra","Rohan Mehra",1],["PAN","ABCPM0000X","ABCPM0000X",1],["Income","₹48.0 L","₹48.2 L (ITR)",1],["ITR ack no.","15 digits","13 digits",0],["Tax paid","Expected ≈ ₹11.8 L","₹1.18 L (ITR)",0]],
+    flags:[
+      {sev:"high",b:"Tax doesn't match income",t:"₹48.2 L income should attract about ₹11.8 L tax. The ITR shows ₹1.18 L, about 10× lower. Looks like a digit was added to income.",d:"itr",hl:"tax"},
+      {sev:"high",b:"Acknowledgement number invalid",t:"Has 13 digits. Genuine e-filing acknowledgements have 15.",d:"itr",hl:"ack"},
+      {sev:"med",b:"Income field edited",t:"Font and spacing of Gross Total Income differ from the rest of the page.",d:"itr",hl:"gti"},
+      {sev:"med",b:"Filed 2 days before proposal",t:"ITR filed on 12-Oct-2026, proposal signed 14-Oct-2026. A return filed just for this proposal needs a closer look.",d:"itr",hl:"filed"}
+    ],
+    reco:["Verify ITR directly on the Income Tax portal / Form 26AS","Ask for 3 years of ITRs with computation","Hold the case until financials are verified"],
+    actions:["Raise requirement","Refer to fraud team"],
+    stats:[["6","documents read"],["36","fields cross-checked"],["4","red flags raised"],["1","suspected forgery"]]
+  },
+  fmr: {
+    id:"DEMO-02", plan:"Term plan · 25 yrs", la:"Vikram Nair (sample) · 44 · M", occ:"Salaried: IT services",
+    docs:[
+      {n:"Application Form", s:"attn", d:"fmr_app", note:"Health answers contradicted"},
+      {n:"FMR (Full Medical Report)", s:"attn", d:"fmr", note:"Undisclosed history"},
+      {n:"Biochemistry · FBS, HbA1c", s:"attn", d:"blood", note:"Values out of range"},
+      {n:"PAN Card", s:"ok"}, {n:"Aadhaar Card", s:"ok"}, {n:"Salary slips · 3 months", s:"ok"}, {n:"ECG (resting)", s:"ok"}, {n:"Urine routine", s:"ok"}
+    ],
+    alert:{k:"Saras alert · Medical", h:"Disease not declared on the form", p:"The applicant answered “No” to diabetes and medicines. The medical report says he's been diabetic for 4 years and is on treatment.", c:["3 high", "1 medium"]},
+    general:[["Sum assured","₹1,50,00,000"],["Annual premium","₹24,210"],["Age / BMI","44 / 27.4"],["Annual income","₹32,00,000"],["Channel","Agency"],["Medical category","FMR + Blood"]],
+    xc:[["Diabetes","No","Type 2 DM, 4 yrs (FMR)",0],["Medicines","No","Metformin 500 mg (FMR)",0],["Blood sugar","Not declared","HbA1c 8.1% (Lab)",0],["Blood pressure","No","158/98 (FMR)",0],["Height","176 cm","176 cm",1]],
+    flags:[
+      {sev:"high",b:"Diabetes not disclosed",t:"Form says “No”. The examiner recorded diabetes for 4 years.",d:"fmr",hl:"hist"},
+      {sev:"high",b:"Medication not disclosed",t:"Form says no medicines. FMR notes Metformin twice a day.",d:"fmr",hl:"hist"},
+      {sev:"high",b:"Uncontrolled sugar",t:"HbA1c 8.1% and fasting sugar 164 mg/dL confirm the history.",d:"blood",hl:"hba1c"},
+      {sev:"med",b:"High BP readings",t:"158/98 and 152/96 on both readings. BP not declared either.",d:"fmr",hl:"bp"}
+    ],
+    reco:["Raise diabetes questionnaire + treating doctor's prescriptions","Refer to medical underwriter for rating","Flag as material non-disclosure on file"],
+    actions:["Raise requirement","Refer to medical UW"],
+    stats:[["8","documents read"],["52","fields cross-checked"],["4","red flags raised"],["1","undisclosed condition"]]
+  }
+};
+let cur=null;
+
+/* ---------- Helpers ---------- */
+const $=s=>document.querySelector(s);
+function brandHTML(){return LOGO_URL?`<img src="${LOGO_URL}" alt="Aditya Birla Capital">`:`<div class="sun">ABC</div><div class="wordmark"><b>Aditya Birla Capital</b><span>Analytics Day</span></div>`}
+document.querySelectorAll('[data-brand]').forEach(e=>e.innerHTML=brandHTML());
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id))}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2600)}
+(function(){const h=new Date().getHours();$('#greetWord').textContent=h<12?'Good morning':h<17?'Good afternoon':'Good evening'})();
+function searchCase(){const q=$('#q').value.trim().toUpperCase();if(q.includes('02'))openCase('fmr');else if(q.includes('01')||q==='')openCase('itr');else toast('Try DEMO-01 or DEMO-02 for this demo')}
+
+/* ---------- Processing ---------- */
+function openCase(k){
+  cur=k;const c=CASES[k];
+  $('#procSub').textContent=`${c.id} · ${c.docs.length} documents`;
+  const steps=["Sorting documents by type","Extracting key fields","Cross-checking form vs documents","Applying underwriting rules","Writing the summary"];
+  $('#steps').innerHTML=steps.map(s=>`<div class="step"><div class="dot"></div>${s}</div>`).join('');
+  $('#docCount').textContent='0';$('#ringArc').style.strokeDashoffset=326.7;
+  go('processing');
+  const els=[...document.querySelectorAll('#steps .step')];let i=0;const n=c.docs.length;
+  const tick=()=>{
+    if(i>0)els[i-1].className='step done';
+    if(i<els.length){els[i].className='step run';
+      $('#docCount').textContent=Math.min(n,Math.round((i+1)/els.length*n));
+      $('#ringArc').style.strokeDashoffset=326.7*(1-(i+1)/els.length);i++;setTimeout(tick,750)}
+    else setTimeout(renderCase,400);
+  };setTimeout(tick,300);
+}
+
+/* ---------- Case ---------- */
+function renderCase(){
+  const c=CASES[cur];
+  $('#cTitle').textContent=`Policy ${c.id}`;$('#cSub').textContent=`${c.plan} · Sample case`;
+  $('#caseHead').innerHTML=`<div class="row1"><div class="ic">📄</div>${c.la}</div><div class="row2"><span class="chip">${c.occ}</span><span class="chip">${c.docs.length} docs</span></div>`;
+  $('#pane-summary').innerHTML=`
+    <div class="alert"><div class="k">${c.alert.k}</div><h3>${c.alert.h}</h3><p>${c.alert.p}</p><div class="cnt">${c.alert.c.map(x=>`<span>${x}</span>`).join('')}</div></div>
+    <div class="card"><h4>Adverse information <small>Tap Source to see proof</small></h4>
+      ${c.flags.map((f,i)=>`<div class="flag"><span class="sev ${f.sev}">${f.sev}</span><div class="t"><b>${f.b}</b><span>${f.t}</span></div><button class="src" onclick="openDoc('${f.d}','${f.hl}',${i})">👁 Source</button></div>`).join('')}
+    </div>
+    <div class="card"><h4>Cross-check <small>Form vs documents</small></h4>
+      <table class="xc"><tr><th>Field</th><th>Form</th><th>Found</th><th class="m"></th></tr>
+      ${c.xc.map(r=>`<tr class="${r[3]?'':'bad'}"><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td class="m">${r[3]?'<span class="ok-i">✓</span>':'<span class="bad-i">✕</span>'}</td></tr>`).join('')}</table>
+    </div>
+    <div class="card"><h4>General details</h4><div class="kv">${c.general.map(g=>`<div><span>${g[0]}</span><b>${g[1]}</b></div>`).join('')}</div></div>
+    <div class="card"><h4>Saras suggests</h4><ul class="reco">${c.reco.map(r=>`<li>${r}</li>`).join('')}</ul></div>
+    <div class="actions"><button class="btn ghost" onclick="finish()">${c.actions[1]}</button><button class="btn" onclick="finish()">${c.actions[0]}</button></div>
+    <div class="fine" style="margin-bottom:8px">The underwriter makes the final call. Saras does the reading.</div>`;
+  $('#pane-docs').innerHTML=`<div class="legend">Saras sorted and checked every document in the file.</div><div class="card" style="margin-top:0">
+    ${c.docs.map(d=>`<button class="doc" onclick="openDoc('${d.d||''}','',-1,'${d.n}')"><div class="di">📄</div><div class="dn">${d.n}${d.note?`<small>${d.note}</small>`:''}</div><span class="st ${d.s}">${d.s==='ok'?'✓ Validated':'! Attention'}</span></button>`).join('')}</div>`;
+  tab('summary');$('#caseScroll').scrollTop=0;go('case');
+}
+function tab(t){document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id==='pane-'+t))}
+
+/* ---------- Doc sheet ---------- */
+const DOC_TITLES={itr_app:"Application Form",itr:"ITR · AY 2025-26",fmr_app:"Application Form",fmr:"FMR (Full Medical Report)",blood:"Biochemistry report"};
+function openDoc(d,hl,fi,name){
+  const c=CASES[cur];
+  $('#shTitle').textContent=d?DOC_TITLES[d]:name;
+  let html=d?DOCS[d]():DOCS.generic(name);
+  // For flags, show the counter-document too
+  if(fi>=0){
+    const pair={itr:'itr_app',fmr:'fmr_app',blood:'fmr_app'}[d];
+    if(pair) html+= `<div class="legend" style="margin-top:4px">Compared against:</div>`+DOCS[pair]();
+    const f=c.flags[fi];
+    html+=`<div class="callout"><div class="k">✦ Why Saras flagged this</div><p><b>${f.b}.</b> ${f.t}</p></div>`;
+  } else if(d){
+    const fl=c.flags.find(f=>f.d===d);
+    if(fl) html+=`<div class="callout"><div class="k">✦ Saras note</div><p>Highlighted fields need underwriter attention. <b>${fl.b}.</b></p></div>`;
+  }
+  $('#shBody').innerHTML=html;$('#shBody').scrollTop=0;
+  $('#scrim').classList.add('on');$('#sheet').classList.add('on');
+  if(hl)setTimeout(()=>{const el=$('#shBody').querySelector(`[data-hl="${hl}"]`);if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('pulse')}},420);
+}
+function closeSheet(){$('#scrim').classList.remove('on');$('#sheet').classList.remove('on')}
+
+/* ---------- Recap ---------- */
+function finish(){
+  const c=CASES[cur];toast('Sent to underwriter workflow (demo)');
+  setTimeout(()=>{
+    $('#recapBody').innerHTML=`<div class="eyebrow" style="margin-top:6px">Case closed</div>
+      <h2>${cur==='itr'?'A doctored ITR, caught before issuance.':'A hidden condition, caught before issuance.'}</h2>
+      <p class="lead">${cur==='itr'?'The income matched. The maths behind it did not. Saras checked every number against every other number.':'The form said healthy. Saras read the medical report and lab values and connected the dots.'}</p>
+      <div class="stats">${c.stats.map(s=>`<div class="stat"><b>${s[0]}</b><span>${s[1]}</span></div>`).join('')}</div>
+      <div class="flow"><div><i>1</i>Reads every document in the file</div><div><i>2</i>Pulls out the fields that matter</div><div><i>3</i>Cross-checks the form against the proof</div><div><i>4</i>Flags issues with the source, so the underwriter decides faster</div></div>
+      <div class="fine" style="margin:14px 0 4px">Visit the Saras team at the stall to learn more.</div>`;
+    const other=cur==='itr'?'fmr':'itr';$('#otherBtn').onclick=()=>openCase(other);
+    go('recap');
+  },900);
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
+</script>
+</body>
+</html>
