@@ -254,15 +254,15 @@ button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
       <div class="greet"><h2><span class="g" id="greetWord">Good morning</span>, let's get started</h2></div>
       <form class="search" onsubmit="event.preventDefault();searchCase()">
         <span>🔍</span>
-        <input id="q" placeholder="Enter policy no. (try DEMO-01)" autocomplete="off">
+        <input id="q" placeholder="Enter policy no. (try 9876589786)" autocomplete="off">
         <button type="submit">Search</button>
       </form>
       <div class="pills"><span>⚡ Instant retrieval</span><span>🛡 AI analysis</span><span>📊 Smart underwriting</span></div>
 
       <div class="sec-h">Recent cases</div>
       <div class="recent">
-        <button class="rc" onclick="openCase('itr')"><div class="di">📄</div><div class="rn"><b>DEMO-01</b><small>Term plan · 10 min ago</small></div><span class="arr">›</span></button>
-        <button class="rc" onclick="openCase('fmr')"><div class="di">📄</div><div class="rn"><b>DEMO-02</b><small>Term plan · 25 min ago</small></div><span class="arr">›</span></button>
+        <button class="rc" onclick="openCase('itr')"><div class="di">📄</div><div class="rn"><b>9876589786</b><small>Term plan · 10 min ago</small></div><span class="arr">›</span></button>
+        <button class="rc" onclick="openCase('fmr')"><div class="di">📄</div><div class="rn"><b>3456721314</b><small>Term plan · 25 min ago</small></div><span class="arr">›</span></button>
       </div>
       <div class="fine" style="margin-top:14px">Sample cases with made-up data</div>
     </div>
@@ -277,7 +277,7 @@ button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
         <div class="num"><div><span id="docCount">0</span><small>docs read</small></div></div>
       </div>
       <h2>Saras is reading the file</h2>
-      <div class="sub" id="procSub">DEMO-01 · 7 documents</div>
+      <div class="sub" id="procSub">9876589786 · 7 documents</div>
       <div class="steps" id="steps"></div>
     </div>
   </section>
@@ -286,7 +286,7 @@ button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
   <section class="screen" id="case">
     <div class="appbar">
       <button class="back" onclick="go('home')" aria-label="Back">←</button>
-      <div class="ttl"><b id="cTitle">Policy DEMO-01</b><span id="cSub">Term plan · Sample case</span></div>
+      <div class="ttl"><b id="cTitle">Policy 9876589786</b><span id="cSub">Term plan · Sample case</span></div>
       <span class="saras-chip"><i>S</i></span>
     </div>
     <div class="scroll" id="caseScroll">
@@ -379,7 +379,7 @@ const DOCS = {
 /* ---------- Cases ---------- */
 const CASES = {
   itr: {
-    id:"DEMO-01", plan:"Term plan · 30 yrs", la:"Rohan Mehra (sample) · 38 · M", occ:"Self-employed: Garment trading",
+    id:"9876589786", plan:"Term plan · 30 yrs", la:"Rohan Mehra (sample) · 38 · M", occ:"Self-employed: Garment trading",
     docs:[
       {n:"Application Form", s:"ok", d:"itr_app"},
       {n:"ITR · AY 2025-26", s:"attn", d:"itr", note:"4 checks failed"},
@@ -399,7 +399,7 @@ const CASES = {
     stats:[["6","documents read"],["36","fields cross-checked"],["4","red flags raised"],["1","suspected forgery"]]
   },
   fmr: {
-    id:"DEMO-02", plan:"Term plan · 25 yrs", la:"Vikram Nair (sample) · 44 · M", occ:"Salaried: IT services",
+    id:"3456721314", plan:"Term plan · 25 yrs", la:"Vikram Nair (sample) · 44 · M", occ:"Salaried: IT services",
     docs:[
       {n:"Application Form", s:"attn", d:"fmr_app", note:"Health answers contradicted"},
       {n:"FMR (Full Medical Report)", s:"attn", d:"fmr", note:"Undisclosed history"},
@@ -429,7 +429,7 @@ document.querySelectorAll('[data-brand]').forEach(e=>e.innerHTML=brandHTML());
 function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id))}
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2600)}
 (function(){const h=new Date().getHours();$('#greetWord').textContent=h<12?'Good morning':h<17?'Good afternoon':'Good evening'})();
-function searchCase(){const q=$('#q').value.trim().toUpperCase();if(q.includes('02'))openCase('fmr');else if(q.includes('01')||q==='')openCase('itr');else toast('Try DEMO-01 or DEMO-02 for this demo')}
+function searchCase(){const q=$('#q').value.trim().toUpperCase();if(q.includes('02'))openCase('fmr');else if(q.includes('01')||q==='')openCase('itr');else toast('Try 9876589786 or 3456721314 for this demo')}
 
 /* ---------- Processing ---------- */
 function openCase(k){
