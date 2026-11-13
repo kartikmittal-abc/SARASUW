@@ -497,7 +497,7 @@ function closeSheet(){$('#scrim').classList.remove('on');$('#sheet').classList.r
 
 /* ---------- Recap ---------- */
 function finish(){
-  const c=CASES[cur];toast('Sent to underwriter workflow (demo)');
+  const c=CASES[cur];toast('');
   setTimeout(()=>{
     $('#recapBody').innerHTML=`<div class="eyebrow" style="margin-top:6px">Case closed</div>
       <h2>${cur==='itr'?'A doctored ITR, caught before issuance.':'A hidden condition, caught before issuance.'}</h2>
